@@ -1,0 +1,154 @@
+index.html<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ayşegülüm 🤍</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #2b0033, #4b004f);
+      color: white;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    header {
+      padding: 40px 20px 20px;
+      z-index: 2;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 22px;
+      font-weight: normal;
+      margin-bottom: 30px;
+    }
+
+    .counter {
+      font-size: 20px;
+      margin: 20px 0;
+    }
+
+    .text {
+      font-style: italic;
+      margin-top: 15px;
+      font-size: 16px;
+      opacity: 0.9;
+    }
+
+    .btn {
+      margin-top: 30px;
+      padding: 14px 28px;
+      font-size: 18px;
+      background: #ff5fa2;
+      border: none;
+      border-radius: 30px;
+      color: white;
+      cursor: pointer;
+      z-index: 2;
+      position: relative;
+    }
+
+    .photo {
+      display: none;
+      margin-top: 30px;
+      z-index: 2;
+      position: relative;
+    }
+
+    .photo img {
+      max-width: 85%;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.4);
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 20px;
+      animation: rise 8s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-110vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Seni Çok Seviyorum Ayşegülüm 🤍</h1>
+
+    <div class="counter" id="counter"></div>
+
+    <div class="text">
+      Birlikte geçen zaman ne kadar hızlı akıyor, farkında mısın bitanem
+    </div>
+
+    <button class="btn" onclick="showPhoto()">💗 Buraya tıkla bakalım güzelim 💗</button>
+
+    <div class="photo" id="photo">
+      <img src="https://i.imgur.com/QXsidOA.jpeg" alt="Biz">
+    </div>
+  </header>
+
+  <script>
+    // Sayaç
+    const startDate = new Date("2023-04-27T00:00:00");
+
+    function updateCounter() {
+      const now = new Date();
+      const diff = now - startDate;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("counter").innerText =
+        `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye`;
+    }
+
+    setInterval(updateCounter, 1000);
+    updateCounter();
+
+    // Fotoğraf göster
+    function showPhoto() {
+      document.getElementById("photo").style.display = "block";
+    }
+
+    // Kalpler
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = "🤍";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (6 + Math.random() * 4) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 8000);
+    }
+
+    setInterval(createHeart, 400);
+  </script>
+
+</body>
+</html>
